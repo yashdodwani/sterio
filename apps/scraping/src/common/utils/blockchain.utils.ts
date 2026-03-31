@@ -70,6 +70,7 @@ export function bytesToHex(value: unknown): string | null {
 	return null;
 }
 
+
 /**
  * Safely convert value to BigInt
  */
