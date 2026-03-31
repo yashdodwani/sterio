@@ -23,9 +23,13 @@ const step2Schema = z.object({
   apt: z.string().max(50).optional(),
   city: z.string().min(2).max(100),
   state: z.string().max(100).optional(),
-  zip: z.string().regex(/^\d{5}(-\d{4})?$/),
+  zip: z.string().min(3).max(20),
   country: z.enum(['US', 'GB', 'AU', 'CA', 'DE', 'FR', 'JP', 'SG', 'IN']),
-});
+}).refine((d) => {
+  if (d.country === 'IN') return /^\d{6}$/.test(d.zip);
+  if (d.country === 'US') return /^\d{5}(-\d{4})?$/.test(d.zip);
+  return d.zip.length >= 3;
+}, { message: 'Invalid postal code', path: ['zip'] });
 
 const COUNTRIES = [
   { code: 'US', label: 'United States' },
@@ -74,8 +78,8 @@ function SizeGrid({ options, selected, onSelect }: { options: readonly string[];
           type="button"
           onClick={() => onSelect(s)}
           className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors cursor-pointer ${selected === s
-              ? 'border-(--primary) bg-(--primary) text-white'
-              : 'border-(--border) bg-(--surface-elevated) text-(--text-secondary) hover:border-(--primary-light) hover:text-(--text-primary)'
+            ? 'border-(--primary) bg-(--primary) text-white'
+            : 'border-(--border) bg-(--surface-elevated) text-(--text-secondary) hover:border-(--primary-light) hover:text-(--text-primary)'
             }`}
         >
           {s}
@@ -245,8 +249,8 @@ export default function OnboardingPage() {
               </Field>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <Field label="ZIP code" error={errors.zip}>
-                <input value={data.zip} onChange={(e) => set('zip', e.target.value)} placeholder="10001" className={inputCls(!!errors.zip)} />
+              <Field label={data.country === 'IN' ? 'PIN code' : 'ZIP code'} error={errors.zip}>
+                <input value={data.zip} onChange={(e) => set('zip', e.target.value)} placeholder={data.country === 'IN' ? '110001' : '10001'} className={inputCls(!!errors.zip)} />
               </Field>
               <Field label="Country" error={errors.country}>
                 <select
