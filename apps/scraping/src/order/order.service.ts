@@ -68,8 +68,8 @@ export class OrderService {
 		return {
 			order_id: order.id,
 			amount: order.amount,
-			currency: 'DOT',
-			network: 'polkadot',
+			currency: 'MNT',
+			network: 'mantle',
 			items: order.items,
 		};
 	}

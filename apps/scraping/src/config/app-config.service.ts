@@ -114,24 +114,24 @@ export class AppConfigService {
 		return this.configService.get<string>('FULL_SYNC_CRON', '0 0 * * *');
 	}
 
-	// Polkadot payment
-	get polkadotNetwork(): string {
-		return this.configService.get<string>('POLKADOT_NETWORK', 'polkadot');
+	// Mantle payment
+	get mantleNetwork(): string {
+		return this.configService.get<string>('MANTLE_NETWORK', 'mantle');
 	}
 
-	get polkadotMerchantAddress(): string {
-		return this.configService.get<string>('POLKADOT_MERCHANT_ADDRESS', '');
+	get mantleMerchantAddress(): string {
+		return this.configService.get<string>('MANTLE_MERCHANT_ADDRESS', '');
 	}
 
-	get polkadotPaymentAmountPlanck(): string {
+	get mantlePaymentAmountPlanck(): string {
 		return this.configService.get<string>(
-			'POLKADOT_PAYMENT_AMOUNT_PLANCK',
+			'MANTLE_PAYMENT_AMOUNT_PLANCK',
 			'1000000000',
 		);
 	}
 
-	get polkadotCurrencySymbol(): string {
-		return this.configService.get<string>('POLKADOT_CURRENCY_SYMBOL', 'DOT');
+	get mantleCurrencySymbol(): string {
+		return this.configService.get<string>('MANTLE_CURRENCY_SYMBOL', 'MNT');
 	}
 
 	// x402-style paywall

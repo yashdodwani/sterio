@@ -26,14 +26,14 @@ export class PaymentEntity {
 	@Column({ length: 100 })
 	userId: string;
 
-	/** DOT amount */
+	/** MNT amount */
 	@Column({ type: 'decimal', precision: 18, scale: 6 })
 	amount: number;
 
-	@Column({ length: 20, default: 'DOT' })
+	@Column({ length: 20, default: 'MNT' })
 	token: string;
 
-	@Column({ length: 20, default: 'polkadot' })
+	@Column({ length: 20, default: 'mantle' })
 	network: string;
 
 	@Column({ length: 255, nullable: true })
@@ -42,7 +42,7 @@ export class PaymentEntity {
 	@Column({ length: 255, nullable: true })
 	senderAddress: string;
 
-	/** Polkadot extrinsic hash */
+	/** Mantle extrinsic hash */
 	@Column({ length: 255, nullable: true, unique: true })
 	txHash: string;
 

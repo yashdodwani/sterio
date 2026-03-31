@@ -228,7 +228,7 @@ export function HeroChatDemo() {
           </div>
           <div className="flex items-center gap-2 bg-white/[0.04] border border-white/8 rounded-full px-3.5 py-2">
             <span className="w-2 h-2 rounded-full bg-[#E6007A] animate-pulse flex-shrink-0" />
-            <span className="text-[11px] font-semibold text-gray-300">Secured by Polkadot</span>
+            <span className="text-[11px] font-semibold text-gray-300">Secured by Mantle</span>
           </div>
         </motion.div>
       </div>

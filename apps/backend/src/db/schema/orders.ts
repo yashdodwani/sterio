@@ -20,13 +20,13 @@ export const orders = pgTable(
     crossmintOrderId: varchar("crossmint_order_id", { length: 255 }),
     amountPas: numeric("amount_pas"),
     amountUsdc: numeric("amount_usdc"),
-    polkadotTxHash: varchar("polkadot_tx_hash", { length: 255 }),
+    mantleTxHash: varchar("mantle_tx_hash", { length: 255 }),
     createdAt: timestamp("created_at").notNull().defaultNow(),
   },
   (table) => [
     index("idx_orders_user_id").on(table.userId),
     uniqueIndex("idx_orders_crossmint_order_id").on(table.crossmintOrderId),
-    uniqueIndex("idx_orders_polkadot_tx_hash").on(table.polkadotTxHash),
+    uniqueIndex("idx_orders_mantle_tx_hash").on(table.mantleTxHash),
   ]
 )
 

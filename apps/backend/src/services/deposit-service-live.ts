@@ -52,7 +52,7 @@ const impl: DepositServiceShape = {
       const walletLocator = `email:${user.email}:evm-smart-wallet`
       yield* fundCrossmintWallet(walletLocator, usdcEther)
 
-      // 4. Insert deposit order record (unique constraint on polkadot_tx_hash guards duplicates)
+      // 4. Insert deposit order record (unique constraint on mantle_tx_hash guards duplicates)
       const depositOrder = yield* Effect.tryPromise({
         try: () =>
           db
@@ -62,14 +62,14 @@ const impl: DepositServiceShape = {
               type: "deposit",
               amountPas: amountPasStr,
               amountUsdc: amountUsdcStr,
-              polkadotTxHash: transactionHash,
+              mantleTxHash: transactionHash,
             })
             .returning()
             .then((rows) => rows[0]),
         catch: (cause) => {
-          // Handle unique constraint violation on polkadot_tx_hash
+          // Handle unique constraint violation on mantle_tx_hash
           const msg = String(cause)
-          if (msg.includes("idx_orders_polkadot_tx_hash") || msg.includes("unique")) {
+          if (msg.includes("idx_orders_mantle_tx_hash") || msg.includes("unique")) {
             return new DepositDuplicateError({ transactionHash })
           }
           return new DatabaseError({ cause })

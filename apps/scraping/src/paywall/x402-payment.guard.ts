@@ -52,8 +52,8 @@ export class X402PaymentGuard implements CanActivate {
 
 		const proof = await this.scanService.verifyPaymentProof({
 			txHash: parsed.txHash,
-			recipient: this.config.polkadotMerchantAddress,
-			minAmountPlanck: this.config.polkadotPaymentAmountPlanck,
+			recipient: this.config.mantleMerchantAddress,
+			minAmountPlanck: this.config.mantlePaymentAmountPlanck,
 		});
 
 		if (!proof.ok) {
@@ -64,11 +64,11 @@ export class X402PaymentGuard implements CanActivate {
 
 		(req as Request & { x402Payment?: Record<string, any> }).x402Payment = {
 			txHash: parsed.txHash,
-			recipient: this.config.polkadotMerchantAddress,
-			network: this.config.polkadotNetwork,
-			token: this.config.polkadotCurrencySymbol,
+			recipient: this.config.mantleMerchantAddress,
+			network: this.config.mantleNetwork,
+			token: this.config.mantleCurrencySymbol,
 			amountPlanck:
-				proof.payment?.amountPlanck ?? this.config.polkadotPaymentAmountPlanck,
+				proof.payment?.amountPlanck ?? this.config.mantlePaymentAmountPlanck,
 			payer: proof.payment?.from,
 		};
 
@@ -111,7 +111,7 @@ export class X402PaymentGuard implements CanActivate {
 		const res = (req as any).res;
 		res.setHeader(
 			'X-Payment-Required',
-			`recipient=${this.config.polkadotMerchantAddress};amount=${this.config.polkadotPaymentAmountPlanck}`,
+			`recipient=${this.config.mantleMerchantAddress};amount=${this.config.mantlePaymentAmountPlanck}`,
 		);
 		res.status(402).json({
 			error: 'Payment Required',
@@ -119,10 +119,10 @@ export class X402PaymentGuard implements CanActivate {
 			message,
 			details,
 			payment: {
-				network: this.config.polkadotNetwork,
-				recipient: this.config.polkadotMerchantAddress,
-				amount: this.config.polkadotPaymentAmountPlanck,
-				currency: this.config.polkadotCurrencySymbol,
+				network: this.config.mantleNetwork,
+				recipient: this.config.mantleMerchantAddress,
+				amount: this.config.mantlePaymentAmountPlanck,
+				currency: this.config.mantleCurrencySymbol,
 				verifier: 'routescan',
 				instructions:
 					'Submit a Balances.transfer or transfer_keep_alive to the merchant, then retry with X-Payment: block=0x...',

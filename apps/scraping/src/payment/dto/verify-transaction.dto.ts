@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString } from "class-validator";
 
 export class VerifyTransactionRequestDto {
 	@ApiProperty({
-		description: 'The hash of the Polkadot transaction to verify',
+		description: 'The hash of the Mantle transaction to verify',
 		example: '0x123abc...',
 	})
 	@IsString()

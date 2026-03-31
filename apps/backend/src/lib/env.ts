@@ -31,7 +31,7 @@ const envSchema = z.object({
   SCRAPING_SERVICE_URL: z.string().default(""),
   SCRAPING_SERVICE_API_KEY: z.string().default(""),
 
-  // Deposit — Polkadot PAS → Base USDC conversion
+  // Deposit — Mantle PAS → Base USDC conversion
   PAS_TO_USDC_RATE: z.coerce.number().positive().default(1),
   DEPOSIT_WEBHOOK_SECRET: z.string().default(""),
 

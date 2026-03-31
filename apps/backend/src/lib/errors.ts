@@ -208,7 +208,7 @@ export class OrderNotFoundError extends Data.TaggedError("OrderNotFoundError")<{
 }
 
 /**
- * Raised when a deposit with the same Polkadot tx hash already exists.
+ * Raised when a deposit with the same Mantle tx hash already exists.
  */
 export class DepositDuplicateError extends Data.TaggedError("DepositDuplicateError")<{
   transactionHash: string

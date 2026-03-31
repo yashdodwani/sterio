@@ -25,7 +25,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Seamless Web3 Checkout',
-    desc: 'No more complex transactions. Experience one-click USDC payments with sub-second finality powered by Polkadot.',
+    desc: 'No more complex transactions. Experience one-click USDC payments with sub-second finality powered by Mantle.',
   },
   {
     beamDelay: 4,
@@ -107,7 +107,7 @@ export default function LandingPage() {
 
             <BlurFade delay={0.2}>
               <p className="text-gray-400 text-[0.9375rem] sm:text-lg lg:text-xl max-w-xl mb-8 sm:mb-10 leading-relaxed mx-auto lg:mx-0">
-                Experience the future of luxury commerce. Intelligent discovery meets seamless one-click USDC checkout on the high-performance Polkadot network.
+                Experience the future of luxury commerce. Intelligent discovery meets seamless one-click USDC checkout on the high-performance Mantle network.
               </p>
             </BlurFade>
 
@@ -279,7 +279,7 @@ export default function LandingPage() {
             <p>© 2026 Sterio LABS. ALL RIGHTS RESERVED.</p>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-              POLKADOT MAINNET LIVE
+              MANTLE MAINNET LIVE
             </div>
           </div>
         </div>

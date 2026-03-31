@@ -24,7 +24,7 @@ export class PaymentController {
 
 	/**
 	 * POST /api/payment/request
-	 * Generate a Polkadot payment request for a given order
+	 * Generate a Mantle payment request for a given order
 	 */
 	@Post('request')
 	async generateRequest(
@@ -40,7 +40,7 @@ export class PaymentController {
 
 	/**
 	 * POST /api/payment/webhook
-	 * Called by frontend after Polkadot payment extrinsic is submitted
+	 * Called by frontend after Mantle payment extrinsic is submitted
 	 */
 	@Post('webhook')
 	async handleWebhook(

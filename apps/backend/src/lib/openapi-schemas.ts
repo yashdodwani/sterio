@@ -258,7 +258,7 @@ export const DepositParamsSchema = z.object({
 export const DepositConfirmRequestSchema = z
   .object({
     amountPAS: z.number().positive().openapi({ example: 100 }),
-    transactionHash: z.string().min(1).openapi({ example: "0xabc123...polkadot_tx_hash" }),
+    transactionHash: z.string().min(1).openapi({ example: "0xabc123...mantle_tx_hash" }),
   })
   .openapi("DepositConfirmRequest")
 

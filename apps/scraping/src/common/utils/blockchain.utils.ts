@@ -1,5 +1,4 @@
-import { hexToU8a, u8aToHex } from '@polkadot/util';
-import { decodeAddress, encodeAddress } from '@polkadot/util-crypto';
+import { getBytes, hexlify, getAddress } from 'ethers';
 
 /**
  * Convert hex value to decimal number
@@ -35,10 +34,10 @@ export function convertHexToString(hexValue: string): string {
 
 	try {
 		// Remove 0x prefix if present
-		const cleanHex = hexValue.startsWith('0x') ? hexValue.slice(2) : hexValue;
+		const cleanHex = hexValue.startsWith('0x') ? hexValue : `0x${hexValue}`;
 
 		// Convert hex to bytes, then to string
-		const bytes = hexToU8a(`0x${cleanHex}`);
+		const bytes = getBytes(cleanHex);
 		return new TextDecoder().decode(bytes);
 	} catch (error) {
 		console.warn(`Failed to convert hex to string ${hexValue}: ${error.message}`);
@@ -101,16 +100,16 @@ export function normalizeAccountHex(value: unknown): string | null {
 
 	const normalized = value.trim();
 	if (normalized.startsWith('0x')) {
-		return normalized.toLowerCase();
+		try {
+			return getAddress(normalized).toLowerCase();
+		} catch {
+			return normalized.toLowerCase();
+		}
 	}
 
 	try {
-		return u8aToHex(decodeAddress(normalized)).toLowerCase();
+		return hexlify(getBytes(`0x${normalized}`)).toLowerCase();
 	} catch {
-		try {
-			return u8aToHex(hexToU8a(normalized)).toLowerCase();
-		} catch {
-			return null;
-		}
+		return null;
 	}
 }

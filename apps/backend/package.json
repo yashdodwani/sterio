@@ -1,7 +1,7 @@
 {
   "name": "steriogent",
   "version": "0.1.0",
-  "description": "AI Shopping Assistant — ReAct chat agent backend with Bun + Hono + Drizzle + Effect",
+  "description": "AI Shopping Assistant \u2014 ReAct chat agent backend with Bun + Hono + Drizzle + Effect",
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",

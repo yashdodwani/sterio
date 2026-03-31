@@ -1445,7 +1445,7 @@ export interface components {
         DepositConfirmRequest: {
             /** @example 100 */
             amountPAS: number;
-            /** @example 0xabc123...polkadot_tx_hash */
+            /** @example 0xabc123...mantle_tx_hash */
             transactionHash: string;
         };
         ChatSession: {

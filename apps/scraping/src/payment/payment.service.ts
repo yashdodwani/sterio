@@ -31,7 +31,7 @@ export class PaymentService {
 	) {}
 
 	/**
-	 * Generate a Polkadot payment request for an order.
+	 * Generate a Mantle payment request for an order.
 	 */
 	async generatePaymentRequest(dto: GeneratePaymentRequestDto): Promise<{
 		payment_id: string;
@@ -77,9 +77,9 @@ export class PaymentService {
 				orderId: dto.order_id,
 				userId: dto.user_id,
 				amount: order.amount,
-				token: 'DOT',
-				network: this.config.polkadotNetwork,
-				recipientAddress: this.config.polkadotMerchantAddress,
+				token: 'MNT',
+				network: this.config.mantleNetwork,
+				recipientAddress: this.config.mantleMerchantAddress,
 				status: 'pending',
 				expiresAt,
 			}),
@@ -98,7 +98,7 @@ export class PaymentService {
 	}
 
 	/**
-	 * Handle payment webhook from frontend after Polkadot extrinsic submission.
+	 * Handle payment webhook from frontend after Mantle extrinsic submission.
 	 * Verifies the on-chain transaction before confirming the order.
 	 */
 	async handleWebhook(dto: PaymentWebhookDto): Promise<{
@@ -185,13 +185,13 @@ export class PaymentService {
 	}
 
 	/**
-	 * Verify Polkadot payment proof via Routescan API.
+	 * Verify Mantle payment proof via Routescan API.
 	 */
 	private async verifyOnChain(txHash: string): Promise<void> {
 		const proof = await this.scanService.verifyPaymentProof({
 			txHash,
-			recipient: this.config.polkadotMerchantAddress,
-			minAmountPlanck: this.config.polkadotPaymentAmountPlanck,
+			recipient: this.config.mantleMerchantAddress,
+			minAmountPlanck: this.config.mantlePaymentAmountPlanck,
 		});
 
 		if (!proof.ok) {

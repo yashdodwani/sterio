@@ -1,4 +1,4 @@
-# Sterio Polkadot
+# Sterio Mantle
 
 AI-powered shopping assistant that lets users search products, manage a cart, and checkout with crypto — all through a conversational chat interface backed by an LLM agent.
 
@@ -75,8 +75,8 @@ APIFY_API_TOKEN=
 # AI
 OPENAI_API_KEY=
 
-# Polkadot
-POLKADOT_MERCHANT_ADDRESS=
+# Mantle
+MANTLE_MERCHANT_ADDRESS=
 ```
 
 ```bash
