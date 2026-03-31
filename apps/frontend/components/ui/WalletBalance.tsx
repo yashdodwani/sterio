@@ -1,9 +1,9 @@
 'use client';
 
-import { useUsdxmBalance } from '@/lib/api/balance';
+import { useMntBalance } from '@/lib/api/balance';
 
 export function WalletBalance() {
-  const { data: balance, isLoading, isError } = useUsdxmBalance();
+  const { data: balance, isLoading, isError } = useMntBalance();
 
   if (isLoading) {
     return (

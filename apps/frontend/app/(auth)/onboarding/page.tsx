@@ -24,7 +24,7 @@ const step2Schema = z.object({
   city: z.string().min(2).max(100),
   state: z.string().max(100).optional(),
   zip: z.string().regex(/^\d{5}(-\d{4})?$/),
-  country: z.enum(['US', 'GB', 'AU', 'CA', 'DE', 'FR', 'JP', 'SG']),
+  country: z.enum(['US', 'GB', 'AU', 'CA', 'DE', 'FR', 'JP', 'SG', 'IN']),
 });
 
 const COUNTRIES = [
@@ -36,11 +36,12 @@ const COUNTRIES = [
   { code: 'FR', label: 'France' },
   { code: 'JP', label: 'Japan' },
   { code: 'SG', label: 'Singapore' },
+  { code: 'IN', label: 'India' },
 ] as const;
 
-const TOPS_SIZES    = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
+const TOPS_SIZES = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
 const BOTTOMS_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '28', '30', '32', '34', '36', '38'] as const;
-const SHOE_SIZES    = ['5', '6', '7', '8', '9', '10', '11', '12', '13'] as const;
+const SHOE_SIZES = ['5', '6', '7', '8', '9', '10', '11', '12', '13'] as const;
 
 type FormData = {
   displayName: string;
@@ -51,7 +52,7 @@ type FormData = {
   city: string;
   state: string;
   zip: string;
-  country: 'US' | 'GB' | 'AU' | 'CA' | 'DE' | 'FR' | 'JP' | 'SG';
+  country: 'US' | 'GB' | 'AU' | 'CA' | 'DE' | 'FR' | 'JP' | 'SG' | 'IN';
   topsSize: string;
   bottomsSize: string;
   footwearSize: string;
@@ -72,11 +73,10 @@ function SizeGrid({ options, selected, onSelect }: { options: readonly string[];
           key={s}
           type="button"
           onClick={() => onSelect(s)}
-          className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors cursor-pointer ${
-            selected === s
+          className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors cursor-pointer ${selected === s
               ? 'border-(--primary) bg-(--primary) text-white'
               : 'border-(--border) bg-(--surface-elevated) text-(--text-secondary) hover:border-(--primary-light) hover:text-(--text-primary)'
-          }`}
+            }`}
         >
           {s}
         </button>
@@ -321,7 +321,6 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 }
 
 function inputCls(hasError: boolean) {
-  return `px-3 py-2.5 rounded-lg border text-sm text-(--text-primary) placeholder-[var(--text-muted)] bg-(--surface-elevated) focus:outline-none transition-colors ${
-    hasError ? 'border-(--error) focus:border-(--error)' : 'border-(--border) focus:border-(--primary)'
-  }`;
+  return `px-3 py-2.5 rounded-lg border text-sm text-(--text-primary) placeholder-[var(--text-muted)] bg-(--surface-elevated) focus:outline-none transition-colors ${hasError ? 'border-(--error) focus:border-(--error)' : 'border-(--border) focus:border-(--primary)'
+    }`;
 }

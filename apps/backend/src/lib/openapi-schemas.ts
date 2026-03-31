@@ -76,7 +76,7 @@ export const commonErrors = {
 
 // ─── Onboarding schemas ─────────────────────────────────────────────────────
 
-export const ALLOWED_COUNTRIES = ["US", "GB", "AU", "CA", "DE", "FR", "JP", "SG"] as const
+export const ALLOWED_COUNTRIES = ["US", "GB", "AU", "CA", "DE", "FR", "JP", "SG", "IN"] as const
 
 export const TOPS_SIZES = ["XXS", "XS", "S", "M", "L", "XL", "XXL"] as const
 

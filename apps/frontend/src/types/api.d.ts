@@ -1394,7 +1394,7 @@ export interface components {
              * @example US
              * @enum {string}
              */
-            country: "US" | "GB" | "AU" | "CA" | "DE" | "FR" | "JP" | "SG";
+            country: "US" | "GB" | "AU" | "CA" | "DE" | "FR" | "JP" | "SG" | "IN";
             /** @example New York */
             city: string;
             /** @example NY */
