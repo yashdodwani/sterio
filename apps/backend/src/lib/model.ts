@@ -1,4 +1,4 @@
-import { createOpenRouter } from "@openrouter/ai-sdk-provider"
+import { createGoogleGenerativeAI } from "@ai-sdk/google"
 import type { LanguageModel } from "ai"
 import { env } from "./env.js"
 
@@ -9,8 +9,8 @@ import { env } from "./env.js"
  * @ai-sdk/openai + custom baseURL approach.
  * Model is selected via LLM_MODEL env var (e.g. "openai/gpt-4o", "anthropic/claude-sonnet-4").
  */
-const openrouter = createOpenRouter({
-  apiKey: env.OPENROUTER_API_KEY,
+const google = createGoogleGenerativeAI({
+  apiKey: env.GEMINI_API_KEY,
 })
 
-export const model: LanguageModel = openrouter.chat(env.LLM_MODEL)
+export const model: LanguageModel = google(env.LLM_MODEL)

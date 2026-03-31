@@ -1,7 +1,7 @@
 {
   "name": "steriogent",
   "version": "0.1.0",
-  "description": "AI Shopping Assistant \u2014 ReAct chat agent backend with Bun + Hono + Drizzle + Effect",
+  "description": "AI Shopping Assistant — ReAct chat agent backend with Bun + Hono + Drizzle + Effect",
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
@@ -12,6 +12,7 @@
     "db:studio": "bunx drizzle-kit studio"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.54",
     "@ai-sdk/openai": "^2.0.0",
     "@crossmint/server-sdk": "^1.2.62",
     "@hono/swagger-ui": "^0.6.1",

@@ -77,9 +77,9 @@ const impl: CheckoutServiceShape = {
           line1: user.street!,
           line2: user.apt ?? undefined,
           city: user.city!,
-          state: user.state ?? "",
-          postalCode: user.zip!,
-          country: user.country!,
+          state: user.country === "US" ? user.state ?? "NY" : "NY",
+          postalCode: user.country === "US" ? user.zip! : "10001",
+          country: "US", // Crossmint Amazon/Shopify testnet requires US address
         },
         payerAddress: user.walletAddress,
         lineItems: [{ productLocator: `amazon:${cartItem.productId}` }],

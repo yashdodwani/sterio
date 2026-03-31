@@ -11,8 +11,8 @@ const MOCK_PRODUCTS: ProductCard[] = [
   {
     id: "B08GBYFVWB",
     name: "Nike Air Zoom Pegasus 40 Running Shoes",
-    image: "https://example.com/images/nike-pegasus-40.jpg",
-    images: ["https://example.com/images/nike-pegasus-40-side.jpg"],
+    image: "https://placehold.co/400x400/png?text=Nike+Pegasus",
+    images: ["https://placehold.co/400x400/png?text=Nike+Pegasus+Side"],
     price: 12000,
     currency: "USD",
     sizes: ["7", "8", "9", "10", "11", "12"],
@@ -31,7 +31,7 @@ const MOCK_PRODUCTS: ProductCard[] = [
   {
     id: "B09KLMN123",
     name: "ASICS Gel-Kayano 30 Stability Running Shoes",
-    image: "https://example.com/images/asics-kayano-30.jpg",
+    image: "https://placehold.co/400x400/png?text=ASICS+Kayano",
     price: 15999,
     currency: "USD",
     sizes: ["7", "8", "9", "10", "11"],
@@ -50,7 +50,7 @@ const MOCK_PRODUCTS: ProductCard[] = [
   {
     id: "B07XQRST45",
     name: "Brooks Ghost 16 Neutral Running Shoes",
-    image: "https://example.com/images/brooks-ghost-16.jpg",
+    image: "https://placehold.co/400x400/png?text=Brooks+Ghost",
     price: 13999,
     currency: "USD",
     sizes: ["6", "7", "8", "9", "10", "11", "12"],
@@ -69,7 +69,7 @@ const MOCK_PRODUCTS: ProductCard[] = [
   {
     id: "B06PQRST67",
     name: "New Balance Fresh Foam X 880v13",
-    image: "https://example.com/images/nb-880v13.jpg",
+    image: "https://placehold.co/400x400/png?text=NB+880",
     price: 13999,
     currency: "USD",
     sizes: ["7", "8", "9", "10", "11", "12", "13"],
@@ -89,7 +89,7 @@ const MOCK_PRODUCTS: ProductCard[] = [
   {
     id: "B05UVWXY89",
     name: "Saucony Kinvara 14 Lightweight Running Shoes",
-    image: "https://example.com/images/saucony-kinvara-14.jpg",
+    image: "https://placehold.co/400x400/png?text=Saucony+Kinvara",
     price: 10999,
     currency: "USD",
     sizes: ["7", "8", "9", "10", "11"],
@@ -108,7 +108,7 @@ const MOCK_PRODUCTS: ProductCard[] = [
   {
     id: "B04ABCDE01",
     name: "Hoka Clifton 9 Max-Cushion Running Shoes",
-    image: "https://example.com/images/hoka-clifton-9.jpg",
+    image: "https://placehold.co/400x400/png?text=Hoka+Clifton",
     price: 14999,
     currency: "USD",
     sizes: ["7", "8", "9", "10", "11", "12"],
@@ -130,9 +130,9 @@ const MOCK_DETAILS: Record<string, ProductDetail> = {
   B08GBYFVWB: {
     ...MOCK_PRODUCTS[0]!,
     images: [
-      "https://example.com/images/nike-pegasus-40.jpg",
-      "https://example.com/images/nike-pegasus-40-side.jpg",
-      "https://example.com/images/nike-pegasus-40-bottom.jpg",
+      "https://placehold.co/400x400/png?text=Nike+Pegasus",
+      "https://placehold.co/400x400/png?text=Nike+Pegasus+Side",
+      "https://placehold.co/400x400/png?text=Nike+Pegasus+Bottom",
     ],
     fullDescription:
       "The Nike Air Zoom Pegasus 40 provides everyday support and a smooth, responsive ride. " +

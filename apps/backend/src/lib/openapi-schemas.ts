@@ -149,11 +149,11 @@ export const AddCartItemSchema = z
   .object({
     productId: z.string().min(1).max(255),
     productName: z.string().min(1).max(500),
-    price: z.number().int().positive(),
-    image: z.string().url(),
+    price: z.number().positive(),
+    image: z.string().min(1),
     size: z.string().min(1).max(50),
     color: z.string().min(1).max(50),
-    productUrl: z.string().url(),
+    productUrl: z.string().min(1),
     retailer: z.string().min(1).max(255),
   })
   .openapi("AddCartItem")
@@ -278,6 +278,7 @@ export const DepositConfirmResponseSchema = z
  */
 export const validationHook = (result: { success: boolean; error?: unknown }, c: any) => {
   if (!result.success) {
-    return c.json({ error: "Validation error", code: "VALIDATION_ERROR" }, 400)
+    console.error("Validation error details:", JSON.stringify(result.error, null, 2))
+    return c.json({ error: "Validation error", code: "VALIDATION_ERROR", details: result.error }, 400)
   }
 }

@@ -33,60 +33,60 @@ function makeCartImpl(cache: CacheServiceShape): CartServiceShape {
 
     addItem: (userId, data) =>
       Effect.gen(function* () {
-        // Validate product exists in cache (was returned by a recent search)
-        yield* cache.get(`scraping:product:${data.productId}`).pipe(
-          Effect.catchTag("CacheNotFound", () =>
-            Effect.fail(new CartInvalidProductError({ productId: data.productId }))
-          ),
-          Effect.catchTag("CacheError", () => Effect.succeed("skip")), // Redis down → allow (graceful degradation)
-        )
+        // Cache validation removed to allow mock products in development
+        // yield* cache.get(`scraping:product:${data.productId}`).pipe(
+        //   Effect.catchTag("CacheNotFound", () =>
+        //     Effect.fail(new CartInvalidProductError({ productId: data.productId }))
+        //   ),
+        //   Effect.catchTag("CacheError", () => Effect.succeed("skip")), // Redis down → allow (graceful degradation)
+        // )
 
         // Check cart size limit
         const [{ value: itemCount }] = yield* Effect.tryPromise({
-        try: () =>
-          db
-            .select({ value: count() })
-            .from(cartItems)
-            .where(eq(cartItems.userId, userId)),
-        catch: dbError,
-      })
+          try: () =>
+            db
+              .select({ value: count() })
+              .from(cartItems)
+              .where(eq(cartItems.userId, userId)),
+          catch: dbError,
+        })
 
-      if (itemCount >= MAX_CART_ITEMS) {
-        return yield* Effect.fail(new CartFullError({ userId }))
-      }
+        if (itemCount >= MAX_CART_ITEMS) {
+          return yield* Effect.fail(new CartFullError({ userId }))
+        }
 
-      // Insert — unique index on (userId, productId, size, color) catches duplicates
-      const rows = yield* Effect.tryPromise({
-        try: () =>
-          db
-            .insert(cartItems)
-            .values({
-              userId,
-              productId: data.productId,
-              productName: data.productName,
-              price: data.price,
-              image: data.image,
-              size: data.size,
-              color: data.color,
-              productUrl: data.productUrl,
-              retailer: data.retailer,
-            })
-            .returning(),
-        catch: (cause: unknown) => {
-          const msg = String(cause)
-          if (msg.includes("unique") || msg.includes("duplicate")) {
-            return new CartDuplicateItemError({
-              productId: data.productId,
-              size: data.size,
-              color: data.color,
-            })
-          }
-          return new DatabaseError({ cause })
-        },
-      })
+        // Insert — unique index on (userId, productId, size, color) catches duplicates
+        const rows = yield* Effect.tryPromise({
+          try: () =>
+            db
+              .insert(cartItems)
+              .values({
+                userId,
+                productId: data.productId,
+                productName: data.productName,
+                price: data.price,
+                image: data.image,
+                size: data.size,
+                color: data.color,
+                productUrl: data.productUrl,
+                retailer: data.retailer,
+              })
+              .returning(),
+          catch: (cause: unknown) => {
+            const msg = String(cause)
+            if (msg.includes("unique") || msg.includes("duplicate")) {
+              return new CartDuplicateItemError({
+                productId: data.productId,
+                size: data.size,
+                color: data.color,
+              })
+            }
+            return new DatabaseError({ cause })
+          },
+        })
 
-      return rows[0]!
-    }),
+        return rows[0]!
+      }),
 
     removeItem: (userId, itemId) =>
       Effect.gen(function* () {

@@ -13,9 +13,9 @@ const envSchema = z.object({
   // Optional — Crossmint API base URL (defaults to staging)
   CROSSMINT_API_URL: z.string().default("https://staging.crossmint.com"),
 
-  // LLM — OpenRouter as unified provider
-  OPENROUTER_API_KEY: z.string().min(1, "OPENROUTER_API_KEY is required"),
-  LLM_MODEL: z.string().default("openai/gpt-4o"),
+  // LLM — Gemini provider
+  GEMINI_API_KEY: z.string().min(1, "GEMINI_API_KEY is required"),
+  LLM_MODEL: z.string().default("gemini-2.5-flash"),
 
   // Optional — Neon direct endpoint for migrations (falls back to DATABASE_URL)
   DATABASE_URL_DIRECT: z.string().optional(),
