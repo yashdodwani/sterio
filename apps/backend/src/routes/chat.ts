@@ -178,6 +178,7 @@ export function createChatRoute(
       system: systemPrompt,
       messages: await convertToModelMessages(allUIMessages, { ignoreIncompleteToolCalls: true }),
       tools,
+      maxOutputTokens: 2048,
       stopWhen: stepCountIs(3),
       onStepFinish: async ({ toolCalls, toolResults }) => {
         // LOGGING ONLY — persistence handled in toUIMessageStreamResponse.onFinish
