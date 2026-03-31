@@ -1,0 +1,81 @@
+# Development only docker-compose for local testing
+version: "3.8"
+
+services:
+  # Local development with hot reload
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: amazon-shopping-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "9229:9229" # Debug port
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_DATABASE=amazon_shopping_agent
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MEILISEARCH_HOST=http://meilisearch:7700
+    volumes:
+      - ./src:/app/src
+      - ./node_modules:/app/node_modules
+    depends_on:
+      - postgres
+      - redis
+      - meilisearch
+    command: npm run start:dev
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: amazon-shopping-db-dev
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=amazon_shopping_agent
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-dev-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: amazon-shopping-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.5
+    container_name: amazon-shopping-search-dev
+    restart: unless-stopped
+    environment:
+      - MEILI_MASTER_KEY=masterKey
+      - MEILI_ENV=development
+    ports:
+      - "7700:7700"
+    volumes:
+      - meilisearch-dev-data:/meili_data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-dev-data:
+  meilisearch-dev-data:

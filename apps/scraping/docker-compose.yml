@@ -1,0 +1,121 @@
+version: "3.8"
+
+services:
+  # NestJS Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: amazon-shopping-agent
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres_password
+      - DB_DATABASE=amazon_shopping_agent
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MEILISEARCH_HOST=http://meilisearch:7700
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      meilisearch:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: amazon-shopping-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_DB=amazon_shopping_agent
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: amazon-shopping-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  # Meilisearch
+  meilisearch:
+    image: getmeili/meilisearch:v1.5
+    container_name: amazon-shopping-search
+    restart: unless-stopped
+    environment:
+      - MEILI_MASTER_KEY=your_meilisearch_master_key
+      - MEILI_ENV=production
+    ports:
+      - "7700:7700"
+    volumes:
+      - meilisearch-data:/meili_data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--spider",
+          "http://localhost:7700/health",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  # PgAdmin (Optional - for database management)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: amazon-shopping-pgadmin
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin_password
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis-data:
+  meilisearch-data:

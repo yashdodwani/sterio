@@ -1,0 +1,94 @@
+{
+  "tools": [
+    {
+      "name": "searchProducts",
+      "description": "Search for products matching the user's requirements. Supports filtering by brand, category, price range, and rating. Supports pagination with page and limit. ALWAYS call this tool when the user asks about products — do NOT respond with text-only answers about products.",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Search query derived from the conversation context (e.g., 'nike running shoes', 'laptop under 1000')"
+        },
+        "brand": {
+          "type": "string",
+          "required": false,
+          "description": "Brand name filter. ONLY set if user explicitly mentions a brand. Include the brand in the query too — this is an additional server-side filter."
+        },
+        "category": {
+          "type": "string",
+          "required": false,
+          "description": "Product category filter. ONLY use if the user explicitly mentions a category. Do NOT infer — the query itself handles relevance. Categories must match exactly what Amazon uses (e.g., 'Wrist Watches', not 'Watches')."
+        },
+        "minPrice": {
+          "type": "number",
+          "required": false,
+          "description": "Minimum price in USD dollars (e.g., 50 means $50.00)"
+        },
+        "maxPrice": {
+          "type": "number",
+          "required": false,
+          "description": "Maximum price in USD dollars (e.g., 200 means $200.00)"
+        },
+        "minRating": {
+          "type": "number",
+          "required": false,
+          "description": "Minimum rating from 0 to 5. ONLY set this if the user explicitly asks for highly-rated products. Do NOT default to any value — most products have no rating data and will be filtered out."
+        },
+        "page": {
+          "type": "number",
+          "required": false,
+          "description": "Page number for pagination (1-based, default 1). Use when user asks for 'more results' or 'next page'."
+        },
+        "limit": {
+          "type": "number",
+          "required": false,
+          "description": "Number of results to return (default 5, max 20). Keep at 5 unless user asks for more."
+        }
+      },
+      "returns": {
+        "products": "Array of ProductCard objects with: id, name, image, images, price (in cents), currency, retailer, product_url, rating, brand, description, category",
+        "totalResults": "Total number of matching products",
+        "query": "The search query used"
+      },
+      "usage_rules": [
+        "ALWAYS call this tool when the user mentions wanting to see, find, or buy products",
+        "ONLY include filters the user explicitly requested — do NOT add minPrice, minRating, or category unless the user asked for them",
+        "If search returns 0 results, retry with FEWER filters (remove brand, category, minRating, widen price range)",
+        "Prices are returned in CENTS — divide by 100 for display (e.g., 14999 → $149.99)",
+        "Default limit is 5 — only increase if user explicitly asks for more",
+        "Use page parameter when user asks for 'more', 'next', or 'show me more'"
+      ]
+    },
+    {
+      "name": "getProductDetails",
+      "description": "Get detailed information about a specific product by its ID (ASIN). Use when the user wants more details about a product from search results.",
+      "parameters": {
+        "productId": {
+          "type": "string",
+          "required": true,
+          "description": "Product ID (ASIN) from a previous searchProducts result"
+        }
+      },
+      "returns": {
+        "id": "Product ID",
+        "name": "Product name",
+        "image": "Primary image URL",
+        "images": "Array of all image URLs",
+        "price": "Price in cents",
+        "currency": "Currency code (USD)",
+        "retailer": "Retailer name",
+        "product_url": "Link to product page",
+        "rating": "Product rating (0-5)",
+        "brand": "Brand name",
+        "fullDescription": "Full product description",
+        "specifications": "Key-value pairs of product specs",
+        "availability": "in_stock | limited | out_of_stock"
+      },
+      "usage_rules": [
+        "Only call after searchProducts — you need a valid product ID",
+        "Use when user says 'tell me more about...', 'details on...', or clicks a product",
+        "Present specifications in a readable format"
+      ]
+    }
+  ]
+}
