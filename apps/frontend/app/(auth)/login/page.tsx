@@ -22,10 +22,10 @@ export default function LoginPage() {
       <div className="w-full max-w-sm flex flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-3">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-(--primary) to-(--primary-light) flex items-center justify-center">
-            <span className="text-white font-bold text-xl">P</span>
+            <span className="text-white font-bold text-xl">S</span>
           </div>
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-(--text-primary)">Purch</h1>
+            <h1 className="text-2xl font-bold text-(--text-primary)">Sterio</h1>
             <p className="text-sm text-(--text-secondary) mt-1">AI-powered shopping assistant</p>
           </div>
         </div>

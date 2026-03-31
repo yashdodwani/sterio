@@ -113,7 +113,7 @@ export function MessageBubble({ message, onSuggestion }: { message: ChatMessage;
     <div className={`msg-enter ${isUser ? 'flex justify-end py-1.5' : 'flex gap-4 items-start py-3.5'}`}>
       {!isUser && (
         <div className="flex-none mt-[3px]">
-          <Image src="/logo.jpg" alt="Purch" width={20} height={20} className="rounded-md" />
+          <Image src="/logo.jpg" alt="Sterio" width={20} height={20} className="rounded-md" />
         </div>
       )}
 

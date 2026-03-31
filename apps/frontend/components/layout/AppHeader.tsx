@@ -17,8 +17,8 @@ export function AppHeader() {
   return (
     <header className="h-12 flex items-center px-4 gap-6 border-b border-(--border) bg-(--surface) flex-none">
       <Link href="/app" className="flex items-center gap-2 shrink-0">
-        <Image src="/logo.jpg" alt="Purch" width={24} height={24} className="rounded-md" />
-        <span className="font-semibold text-sm text-(--text-primary) tracking-tight">Purch</span>
+        <Image src="/logo.jpg" alt="Sterio" width={24} height={24} className="rounded-md" />
+        <span className="font-semibold text-sm text-(--text-primary) tracking-tight">Sterio</span>
       </Link>
 
       <div className="flex-1" />

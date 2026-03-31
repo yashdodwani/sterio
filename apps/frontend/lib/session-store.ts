@@ -19,7 +19,7 @@ export const useSessionStore = create<SessionStore>()(
       clearSession: () => set({ sessionId: null }),
     }),
     {
-      name: 'purch-session',
+      name: 'sterio-session',
       onRehydrateStorage: () => (state) => {
         if (!state) return;
         if (!state.clientId) state.clientId = crypto.randomUUID();

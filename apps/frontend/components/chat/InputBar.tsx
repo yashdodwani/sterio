@@ -61,7 +61,7 @@ export function InputBar({ input, onChange, onSubmit, disabled }: Props) {
               onChange={onChange}
               onInput={handleInput}
               onKeyDown={handleKeyDown}
-              placeholder="Ask Purch to find something for you..."
+              placeholder="Ask Sterio to find something for you..."
               disabled={disabled}
               className="flex-1 resize-none bg-transparent text-[13.5px] outline-none leading-relaxed disabled:opacity-50 max-h-36 overflow-y-auto"
               style={{

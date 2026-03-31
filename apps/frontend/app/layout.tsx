@@ -7,7 +7,7 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans', weight: ['
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-display', weight: ['400', '500', '600', '700'], style: ['normal', 'italic'] });
 
 export const metadata: Metadata = {
-  title: "Purch",
+  title: "Sterio",
   description: "AI-powered shopping assistant",
 };
 
