@@ -59,7 +59,7 @@ export function DepositModal({ onClose }: DepositModalProps) {
   }
 
   function handleDone() {
-    queryClient.invalidateQueries({ queryKey: ['wallet', 'balance', 'usdxm'] });
+    queryClient.invalidateQueries({ queryKey: ['wallet', 'balance', 'mnt'] });
     onClose();
   }
 

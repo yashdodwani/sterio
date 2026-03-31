@@ -76,7 +76,7 @@ export function CheckoutModal({ cartItemId, itemName, itemPrice, onDone, onBack 
       const w =
         wallet ??
         (await getOrCreateWallet({
-          chain: 'base-sepolia',
+          chain: 'mantle-sepolia',
           signer: { type: 'email', email: profile?.email ?? '' },
         }));
       if (!w) throw new Error('Wallet not available');

@@ -79,8 +79,8 @@ export const createCrossmintOrder = (
         locale: "en-US",
         payment: {
           receiptEmail: params.email,
-          method: "base-sepolia",
-          currency: "usdxm",
+          method: "mantle-sepolia",
+          currency: "mnt",
           payerAddress: params.payerAddress,
         },
         lineItems: params.lineItems,
@@ -121,7 +121,7 @@ export interface WalletTransactionResponse {
 export const createWalletTransaction = (
   walletAddress: string,
   serializedTransaction: string,
-  chain: string = "base-sepolia"
+  chain: string = "mantle-sepolia"
 ): Effect.Effect<WalletTransactionResponse, CheckoutPaymentError> =>
   Effect.tryPromise({
     try: async () => {
@@ -186,7 +186,7 @@ export const getCrossmintOrder = (
   })
 
 // ---------------------------------------------------------------------------
-// Fund wallet via staging faucet (USDXM)
+// Fund wallet via staging faucet (MNT)
 // ---------------------------------------------------------------------------
 
 export interface CrossmintFundWalletResponse {
@@ -201,14 +201,14 @@ export interface CrossmintFundWalletResponse {
 export const fundCrossmintWallet = (
   walletLocator: string,
   amount: number,
-  chain: string = "base-sepolia"
+  chain: string = "mantle-sepolia"
 ): Effect.Effect<CrossmintFundWalletResponse[], DepositFundingError> =>
   Effect.tryPromise({
     try: async () => {
       const url = `${baseUrl()}/api/v1-alpha2/wallets/${walletLocator}/balances`
       const body = {
         amount,
-        token: "usdxm",
+        token: "mnt",
         chain,
       }
 

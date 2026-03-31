@@ -23,7 +23,7 @@ export function WalletBalance() {
     <div
       className="flex items-center gap-1.5 px-2.5 h-6 rounded-full border border-(--border) bg-(--surface-elevated) select-none"
       style={{ boxShadow: '0 0 0 1px rgba(108,92,231,0.07) inset' }}
-      title={`USDXM balance on Base Sepolia: ${amount}`}
+      title={`MNT balance on Base Sepolia: ${amount}`}
     >
       <span
         className="w-[5px] h-[5px] rounded-full bg-(--primary) shrink-0"
@@ -33,7 +33,7 @@ export function WalletBalance() {
         {amount}
       </span>
       <span className="text-[9px] font-semibold text-(--text-muted) uppercase tracking-[0.12em] leading-none">
-        USDXM
+        MNT
       </span>
     </div>
   );
