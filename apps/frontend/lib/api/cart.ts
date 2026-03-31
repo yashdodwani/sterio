@@ -41,10 +41,10 @@ export const cartApi = {
         productName: product.name,
         price: product.price,
         image: product.imageUrl,
-        size: '',
-        color: '',
-        productUrl: product.productUrl ?? (product.asin ? `https://www.amazon.com/dp/${product.asin}` : ''),
-        retailer: product.marketplace,
+        size: 'Default',
+        color: 'Default',
+        productUrl: product.productUrl || (product.asin ? `https://www.amazon.com/dp/${product.asin}` : 'https://example.com/item'),
+        retailer: product.marketplace || 'Unknown',
       };
       const created = await apiClient.post('cart', { json: body }).json<BackendCartItem>();
       useCartStore.getState().setBackendId(product.id, created.id);
