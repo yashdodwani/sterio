@@ -35,13 +35,13 @@ export function createLogger(service: string): pino.Logger {
 }
 
 /**
- * Default logger instance for the comagent service.
+ * Default logger instance for the steriogent service.
  * Import and use directly, or call `.child({ requestId })` for request-scoped logging.
  *
  * @example
  * import logger from "@/lib/logger"
  * const reqLog = logger.child({ requestId: "abc-123" })
  */
-const logger = createLogger("comagent")
+const logger = createLogger("steriogent")
 
 export default logger

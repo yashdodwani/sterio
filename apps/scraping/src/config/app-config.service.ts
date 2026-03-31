@@ -156,10 +156,10 @@ export class AppConfigService {
 		);
 	}
 
-	// Comagent
-	get comagentBaseUrl(): string {
+	// Steriogent
+	get steriogentBaseUrl(): string {
 		return this.configService.get<string>(
-			'COMAGENT_BASE_URL',
+			'SterioGENT_BASE_URL',
 			'http://localhost:3001',
 		);
 	}

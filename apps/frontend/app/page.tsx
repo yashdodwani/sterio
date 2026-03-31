@@ -50,7 +50,7 @@ export default function LandingPage() {
             <div className="w-7 h-7 sm:w-8 sm:h-8 bg-brand-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg sm:text-xl leading-none">C</span>
             </div>
-            <span className="text-lg sm:text-xl font-bold tracking-tight">COMA</span>
+            <span className="text-lg sm:text-xl font-bold tracking-tight">Sterio</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
             <a className="hover:text-white transition-colors" href="#features">Features</a>
@@ -196,7 +196,7 @@ export default function LandingPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-20">
             <p className="text-brand-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 sm:mb-4">The Process</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-3 sm:mb-4">The COMA Journey</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-3 sm:mb-4">The Sterio Journey</h2>
             <p className="text-gray-400 text-base sm:text-lg">Luxury shopping redefined in three elegant steps.</p>
           </div>
 
@@ -220,7 +220,7 @@ export default function LandingPage() {
                 <div className="w-7 h-7 sm:w-8 sm:h-8 bg-brand-primary rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-lg sm:text-xl leading-none">C</span>
                 </div>
-                <span className="text-lg sm:text-xl font-bold tracking-tight">COMA</span>
+                <span className="text-lg sm:text-xl font-bold tracking-tight">Sterio</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                 Pioneering the intersection of artificial intelligence and decentralized finance to create the world&apos;s most sophisticated shopping experience.
@@ -276,7 +276,7 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-between items-center pt-8 sm:pt-12 border-t border-white/5 text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold gap-3 sm:gap-0">
-            <p>© 2026 COMA LABS. ALL RIGHTS RESERVED.</p>
+            <p>© 2026 Sterio LABS. ALL RIGHTS RESERVED.</p>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
               POLKADOT MAINNET LIVE

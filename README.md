@@ -1,4 +1,4 @@
-# COMA Polkadot
+# Sterio Polkadot
 
 AI-powered shopping assistant that lets users search products, manage a cart, and checkout with crypto — all through a conversational chat interface backed by an LLM agent.
 

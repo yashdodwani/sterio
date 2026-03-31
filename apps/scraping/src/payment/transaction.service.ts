@@ -184,7 +184,7 @@ export class TransactionService {
 				return;
 			}
 
-			const baseUrl = this.configService.comagentBaseUrl;
+			const baseUrl = this.configService.steriogentBaseUrl;
 			const webhookSecret = this.configService.depositWebhookSecret;
 			const url = `${baseUrl}/api/deposit/${data.userId}/${data.address}/confirm`;
 

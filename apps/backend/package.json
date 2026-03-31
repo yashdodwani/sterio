@@ -1,5 +1,5 @@
 {
-  "name": "comagent",
+  "name": "steriogent",
   "version": "0.1.0",
   "description": "AI Shopping Assistant — ReAct chat agent backend with Bun + Hono + Drizzle + Effect",
   "type": "module",
